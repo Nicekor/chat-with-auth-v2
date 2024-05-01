@@ -5,6 +5,8 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/route'
 import SessionProvider from './components/SessionProvider'
 import NavMenu from './components/NavMenu'
+import { ApolloWrapper } from './ApolloWrapper'
+import { cookies } from 'next/headers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,15 +21,18 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const session = await getServerSession(authOptions)
+  const token = cookies().get('next-auth.session-token')?.value
 
   return (
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider session={session}>
-          <main>
-            <NavMenu />
-            {children}
-          </main>
+          <ApolloWrapper token={token}>
+            <main>
+              <NavMenu />
+              {children}
+            </main>
+          </ApolloWrapper>
         </SessionProvider>
       </body>
     </html>
