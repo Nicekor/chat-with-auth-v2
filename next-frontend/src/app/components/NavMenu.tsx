@@ -1,16 +1,8 @@
 'use client'
-import { gql, useApolloClient } from '@apollo/client'
+import { useApolloClient } from '@apollo/client'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { useEffect } from 'react'
-
-const query = gql`
-  query GetUserName($id: uuid!) {
-    users_by_pk(id: $id) {
-      name
-      email
-    }
-  }
-`
+import { GetUserNameDocument } from '../../../operations/queries.generated'
 
 function AuthBtn() {
   const { data: session } = useSession()
@@ -19,7 +11,7 @@ function AuthBtn() {
   useEffect(() => {
     apolloClient
       .query({
-        query,
+        query: GetUserNameDocument,
         variables: { id: session?.user?.id },
       })
       .then((res) => console.log('from client', res.data))

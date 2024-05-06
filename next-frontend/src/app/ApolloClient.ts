@@ -1,8 +1,6 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rsc'
-import { getToken } from 'next-auth/jwt'
-import { getCsrfToken } from 'next-auth/react'
-import { cookies, headers } from 'next/headers'
+import { cookies } from 'next/headers'
 
 export const { getClient } = registerApolloClient(() => {
   return new ApolloClient({

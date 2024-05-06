@@ -1,9 +1,9 @@
 // This is an example of to protect an API route
-import { getToken } from 'next-auth/jwt'
-import { request, gql } from 'graphql-request'
 import { authOptions } from '../auth/[...nextauth]/route'
 import { getServerSession } from 'next-auth'
 import { NextRequest } from 'next/server'
+import { getClient } from '@/app/ApolloClient'
+import { GetUserNameDocument } from '../../../../operations/queries.generated'
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions)
@@ -15,31 +15,14 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  const secret = process.env.NEXTAUTH_SECRET
-
-  const token = await getToken({
-    req,
-    secret,
-    // Raw gives the un-decoded JWT
-    raw: true,
+  const {
+    data: { users_by_pk: user },
+  } = await getClient().query({
+    query: GetUserNameDocument,
+    variables: { id: session.user?.id },
   })
 
-  const query = gql`
-    query GetUserName($id: uuid!) {
-      users_by_pk(id: $id) {
-        name
-      }
-    }
-  `
-
-  const { users_by_pk: user } = await request(
-    process.env.HASURA_PROJECT_ENDPOINT!,
-    query,
-    { id: session.user?.id },
-    { authorization: `Bearer ${token}` }
-  )
-
   return Response.json({
-    content: `This is protected content. Your name is ${user.name}`,
+    content: `This is protected content. Your name is ${user?.name}`,
   })
 }
