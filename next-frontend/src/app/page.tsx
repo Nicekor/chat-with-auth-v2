@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { gql } from '@apollo/client'
 import { getClient } from './ApolloClient'
 import { GetUserNameDocument } from '../../operations/queries.generated'
+import { Button } from '@nextui-org/react'
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
@@ -19,5 +20,10 @@ export default async function Home() {
   if (!session || !session?.user) {
     redirect('/api/auth/signin')
   }
-  return <div>getServerSession Result {session.user.name}</div>
+  return (
+    <>
+      <div>getServerSession Result {session.user.name}</div>
+      <Button>test</Button>
+    </>
+  )
 }

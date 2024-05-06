@@ -3,6 +3,7 @@ import { useApolloClient } from '@apollo/client'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 import { GetUserNameDocument } from '../../../operations/queries.generated'
+import { Button } from '@nextui-org/react'
 
 function AuthBtn() {
   const { data: session } = useSession()
@@ -28,7 +29,7 @@ function AuthBtn() {
   return (
     <>
       <p>{session.user?.name}</p>
-      <button onClick={() => signOut()}>Sign out</button>
+      <Button onClick={() => signOut()}>Sign out</Button>
     </>
   )
 }
