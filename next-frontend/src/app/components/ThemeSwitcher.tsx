@@ -1,23 +1,25 @@
 'use client'
-
-import { Button } from '@nextui-org/react'
+import { Spinner, Switch } from '@nextui-org/react'
+import { RiMoonLine, RiSunLine } from '@remixicon/react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import { ClientOnly } from './ClientOnly'
 
 export function ThemeSwitcher() {
-  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const onThemeChange = (selected: boolean) => {
+    setTheme(selected ? 'dark' : 'light')
+  }
 
-  if (!mounted) return null
   return (
-    <div>
-      The current theme is: {theme}
-      <Button onClick={() => setTheme('light')}>Light Mode</Button>
-      <Button onClick={() => setTheme('dark')}>Dark Mode</Button>
-    </div>
+    <ClientOnly fallback={<Spinner />}>
+      <Switch
+        isSelected={theme === 'dark'}
+        onValueChange={onThemeChange}
+        startContent={<RiSunLine />}
+        endContent={<RiMoonLine />}
+      />
+    </ClientOnly>
   )
 }
