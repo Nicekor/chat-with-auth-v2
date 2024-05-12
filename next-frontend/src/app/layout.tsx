@@ -9,7 +9,6 @@ import { ApolloWrapper } from './ApolloWrapper'
 import { cookies } from 'next/headers'
 import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { ThemeSwitcher } from './components/ThemeSwitcher'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,10 +31,9 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <ApolloWrapper token={token}>
             <NextUIProvider>
-              <NextThemesProvider attribute="class" defaultTheme="dark">
+              <NextThemesProvider attribute="class" enableSystem>
                 <main>
                   <NavMenu />
-                  <ThemeSwitcher />
                   {children}
                 </main>
               </NextThemesProvider>
