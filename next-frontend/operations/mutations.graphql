@@ -1,0 +1,5 @@
+mutation AddFriend($toUserId: uuid!, $status: friend_status_enum!) {
+  insert_friends_one(object: { toUserId: $toUserId, status: $status }) {
+    id
+  }
+}

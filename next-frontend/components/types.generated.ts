@@ -570,6 +570,419 @@ export enum Cursor_Ordering {
   Desc = 'DESC'
 }
 
+/** columns and relationships of "friend_status" */
+export type Friend_Status = {
+  __typename?: 'friend_status';
+  /** An array relationship */
+  friends: Array<Friends>;
+  /** An aggregate relationship */
+  friends_aggregate: Friends_Aggregate;
+  value: Scalars['String']['output'];
+};
+
+
+/** columns and relationships of "friend_status" */
+export type Friend_StatusFriendsArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+
+/** columns and relationships of "friend_status" */
+export type Friend_StatusFriends_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+/** aggregated selection of "friend_status" */
+export type Friend_Status_Aggregate = {
+  __typename?: 'friend_status_aggregate';
+  aggregate?: Maybe<Friend_Status_Aggregate_Fields>;
+  nodes: Array<Friend_Status>;
+};
+
+/** aggregate fields of "friend_status" */
+export type Friend_Status_Aggregate_Fields = {
+  __typename?: 'friend_status_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Friend_Status_Max_Fields>;
+  min?: Maybe<Friend_Status_Min_Fields>;
+};
+
+
+/** aggregate fields of "friend_status" */
+export type Friend_Status_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Friend_Status_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "friend_status". All fields are combined with a logical 'AND'. */
+export type Friend_Status_Bool_Exp = {
+  _and?: InputMaybe<Array<Friend_Status_Bool_Exp>>;
+  _not?: InputMaybe<Friend_Status_Bool_Exp>;
+  _or?: InputMaybe<Array<Friend_Status_Bool_Exp>>;
+  friends?: InputMaybe<Friends_Bool_Exp>;
+  friends_aggregate?: InputMaybe<Friends_Aggregate_Bool_Exp>;
+  value?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "friend_status" */
+export enum Friend_Status_Constraint {
+  /** unique or primary key constraint on columns "value" */
+  FriendStatusPkey = 'friend_status_pkey'
+}
+
+export enum Friend_Status_Enum {
+  Accepted = 'accepted',
+  Blocked = 'blocked',
+  Pending = 'pending',
+  Rejected = 'rejected'
+}
+
+/** Boolean expression to compare columns of type "friend_status_enum". All fields are combined with logical 'AND'. */
+export type Friend_Status_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<Friend_Status_Enum>;
+  _in?: InputMaybe<Array<Friend_Status_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<Friend_Status_Enum>;
+  _nin?: InputMaybe<Array<Friend_Status_Enum>>;
+};
+
+/** input type for inserting data into table "friend_status" */
+export type Friend_Status_Insert_Input = {
+  friends?: InputMaybe<Friends_Arr_Rel_Insert_Input>;
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate max on columns */
+export type Friend_Status_Max_Fields = {
+  __typename?: 'friend_status_max_fields';
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Friend_Status_Min_Fields = {
+  __typename?: 'friend_status_min_fields';
+  value?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "friend_status" */
+export type Friend_Status_Mutation_Response = {
+  __typename?: 'friend_status_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Friend_Status>;
+};
+
+/** input type for inserting object relation for remote table "friend_status" */
+export type Friend_Status_Obj_Rel_Insert_Input = {
+  data: Friend_Status_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Friend_Status_On_Conflict>;
+};
+
+/** on_conflict condition type for table "friend_status" */
+export type Friend_Status_On_Conflict = {
+  constraint: Friend_Status_Constraint;
+  update_columns?: Array<Friend_Status_Update_Column>;
+  where?: InputMaybe<Friend_Status_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "friend_status". */
+export type Friend_Status_Order_By = {
+  friends_aggregate?: InputMaybe<Friends_Aggregate_Order_By>;
+  value?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: friend_status */
+export type Friend_Status_Pk_Columns_Input = {
+  value: Scalars['String']['input'];
+};
+
+/** select columns of table "friend_status" */
+export enum Friend_Status_Select_Column {
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "friend_status" */
+export type Friend_Status_Set_Input = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Streaming cursor of the table "friend_status" */
+export type Friend_Status_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Friend_Status_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Friend_Status_Stream_Cursor_Value_Input = {
+  value?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** update columns of table "friend_status" */
+export enum Friend_Status_Update_Column {
+  /** column name */
+  Value = 'value'
+}
+
+export type Friend_Status_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Friend_Status_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Friend_Status_Bool_Exp;
+};
+
+/** columns and relationships of "friends" */
+export type Friends = {
+  __typename?: 'friends';
+  created_at: Scalars['timestamptz']['output'];
+  /** An object relationship */
+  friend_status: Friend_Status;
+  fromUserId: Scalars['uuid']['output'];
+  id: Scalars['uuid']['output'];
+  status: Friend_Status_Enum;
+  toUserId: Scalars['uuid']['output'];
+  updated_at: Scalars['timestamptz']['output'];
+  /** An object relationship */
+  userByFromUserId: Users;
+  /** An object relationship */
+  userByToUserid: Users;
+};
+
+/** aggregated selection of "friends" */
+export type Friends_Aggregate = {
+  __typename?: 'friends_aggregate';
+  aggregate?: Maybe<Friends_Aggregate_Fields>;
+  nodes: Array<Friends>;
+};
+
+export type Friends_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Friends_Aggregate_Bool_Exp_Count>;
+};
+
+export type Friends_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Friends_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Friends_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "friends" */
+export type Friends_Aggregate_Fields = {
+  __typename?: 'friends_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Friends_Max_Fields>;
+  min?: Maybe<Friends_Min_Fields>;
+};
+
+
+/** aggregate fields of "friends" */
+export type Friends_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Friends_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "friends" */
+export type Friends_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Friends_Max_Order_By>;
+  min?: InputMaybe<Friends_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "friends" */
+export type Friends_Arr_Rel_Insert_Input = {
+  data: Array<Friends_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Friends_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "friends". All fields are combined with a logical 'AND'. */
+export type Friends_Bool_Exp = {
+  _and?: InputMaybe<Array<Friends_Bool_Exp>>;
+  _not?: InputMaybe<Friends_Bool_Exp>;
+  _or?: InputMaybe<Array<Friends_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  friend_status?: InputMaybe<Friend_Status_Bool_Exp>;
+  fromUserId?: InputMaybe<Uuid_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  status?: InputMaybe<Friend_Status_Enum_Comparison_Exp>;
+  toUserId?: InputMaybe<Uuid_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  userByFromUserId?: InputMaybe<Users_Bool_Exp>;
+  userByToUserid?: InputMaybe<Users_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "friends" */
+export enum Friends_Constraint {
+  /** unique or primary key constraint on columns "fromUserId", "toUserId" */
+  FriendsFromUserIdToUserIdKey = 'friends_fromUserId_toUserId_key',
+  /** unique or primary key constraint on columns "id" */
+  FriendsPkey = 'friends_pkey'
+}
+
+/** input type for inserting data into table "friends" */
+export type Friends_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  friend_status?: InputMaybe<Friend_Status_Obj_Rel_Insert_Input>;
+  fromUserId?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  status?: InputMaybe<Friend_Status_Enum>;
+  toUserId?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  userByFromUserId?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  userByToUserid?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Friends_Max_Fields = {
+  __typename?: 'friends_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  fromUserId?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  toUserId?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by max() on columns of table "friends" */
+export type Friends_Max_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  fromUserId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  toUserId?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Friends_Min_Fields = {
+  __typename?: 'friends_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  fromUserId?: Maybe<Scalars['uuid']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  toUserId?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** order by min() on columns of table "friends" */
+export type Friends_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  fromUserId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  toUserId?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "friends" */
+export type Friends_Mutation_Response = {
+  __typename?: 'friends_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Friends>;
+};
+
+/** on_conflict condition type for table "friends" */
+export type Friends_On_Conflict = {
+  constraint: Friends_Constraint;
+  update_columns?: Array<Friends_Update_Column>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "friends". */
+export type Friends_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  friend_status?: InputMaybe<Friend_Status_Order_By>;
+  fromUserId?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  toUserId?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  userByFromUserId?: InputMaybe<Users_Order_By>;
+  userByToUserid?: InputMaybe<Users_Order_By>;
+};
+
+/** primary key columns input for table: friends */
+export type Friends_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "friends" */
+export enum Friends_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  FromUserId = 'fromUserId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  ToUserId = 'toUserId',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "friends" */
+export type Friends_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  fromUserId?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  status?: InputMaybe<Friend_Status_Enum>;
+  toUserId?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** Streaming cursor of the table "friends" */
+export type Friends_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Friends_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Friends_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  fromUserId?: InputMaybe<Scalars['uuid']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  status?: InputMaybe<Friend_Status_Enum>;
+  toUserId?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** update columns of table "friends" */
+export enum Friends_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  FromUserId = 'fromUserId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  ToUserId = 'toUserId',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Friends_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Friends_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Friends_Bool_Exp;
+};
+
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
@@ -577,6 +990,14 @@ export type Mutation_Root = {
   delete_accounts?: Maybe<Accounts_Mutation_Response>;
   /** delete single row from the table: "accounts" */
   delete_accounts_by_pk?: Maybe<Accounts>;
+  /** delete data from the table: "friend_status" */
+  delete_friend_status?: Maybe<Friend_Status_Mutation_Response>;
+  /** delete single row from the table: "friend_status" */
+  delete_friend_status_by_pk?: Maybe<Friend_Status>;
+  /** delete data from the table: "friends" */
+  delete_friends?: Maybe<Friends_Mutation_Response>;
+  /** delete single row from the table: "friends" */
+  delete_friends_by_pk?: Maybe<Friends>;
   /** delete data from the table: "sessions" */
   delete_sessions?: Maybe<Sessions_Mutation_Response>;
   /** delete single row from the table: "sessions" */
@@ -593,6 +1014,14 @@ export type Mutation_Root = {
   insert_accounts?: Maybe<Accounts_Mutation_Response>;
   /** insert a single row into the table: "accounts" */
   insert_accounts_one?: Maybe<Accounts>;
+  /** insert data into the table: "friend_status" */
+  insert_friend_status?: Maybe<Friend_Status_Mutation_Response>;
+  /** insert a single row into the table: "friend_status" */
+  insert_friend_status_one?: Maybe<Friend_Status>;
+  /** insert data into the table: "friends" */
+  insert_friends?: Maybe<Friends_Mutation_Response>;
+  /** insert a single row into the table: "friends" */
+  insert_friends_one?: Maybe<Friends>;
   /** insert data into the table: "sessions" */
   insert_sessions?: Maybe<Sessions_Mutation_Response>;
   /** insert a single row into the table: "sessions" */
@@ -611,6 +1040,18 @@ export type Mutation_Root = {
   update_accounts_by_pk?: Maybe<Accounts>;
   /** update multiples rows of table: "accounts" */
   update_accounts_many?: Maybe<Array<Maybe<Accounts_Mutation_Response>>>;
+  /** update data of the table: "friend_status" */
+  update_friend_status?: Maybe<Friend_Status_Mutation_Response>;
+  /** update single row of the table: "friend_status" */
+  update_friend_status_by_pk?: Maybe<Friend_Status>;
+  /** update multiples rows of table: "friend_status" */
+  update_friend_status_many?: Maybe<Array<Maybe<Friend_Status_Mutation_Response>>>;
+  /** update data of the table: "friends" */
+  update_friends?: Maybe<Friends_Mutation_Response>;
+  /** update single row of the table: "friends" */
+  update_friends_by_pk?: Maybe<Friends>;
+  /** update multiples rows of table: "friends" */
+  update_friends_many?: Maybe<Array<Maybe<Friends_Mutation_Response>>>;
   /** update data of the table: "sessions" */
   update_sessions?: Maybe<Sessions_Mutation_Response>;
   /** update single row of the table: "sessions" */
@@ -640,6 +1081,30 @@ export type Mutation_RootDelete_AccountsArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Accounts_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Friend_StatusArgs = {
+  where: Friend_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Friend_Status_By_PkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_FriendsArgs = {
+  where: Friends_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Friends_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -691,6 +1156,34 @@ export type Mutation_RootInsert_AccountsArgs = {
 export type Mutation_RootInsert_Accounts_OneArgs = {
   object: Accounts_Insert_Input;
   on_conflict?: InputMaybe<Accounts_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Friend_StatusArgs = {
+  objects: Array<Friend_Status_Insert_Input>;
+  on_conflict?: InputMaybe<Friend_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Friend_Status_OneArgs = {
+  object: Friend_Status_Insert_Input;
+  on_conflict?: InputMaybe<Friend_Status_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_FriendsArgs = {
+  objects: Array<Friends_Insert_Input>;
+  on_conflict?: InputMaybe<Friends_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Friends_OneArgs = {
+  object: Friends_Insert_Input;
+  on_conflict?: InputMaybe<Friends_On_Conflict>;
 };
 
 
@@ -755,6 +1248,46 @@ export type Mutation_RootUpdate_Accounts_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Accounts_ManyArgs = {
   updates: Array<Accounts_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Friend_StatusArgs = {
+  _set?: InputMaybe<Friend_Status_Set_Input>;
+  where: Friend_Status_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Friend_Status_By_PkArgs = {
+  _set?: InputMaybe<Friend_Status_Set_Input>;
+  pk_columns: Friend_Status_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Friend_Status_ManyArgs = {
+  updates: Array<Friend_Status_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_FriendsArgs = {
+  _set?: InputMaybe<Friends_Set_Input>;
+  where: Friends_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Friends_By_PkArgs = {
+  _set?: InputMaybe<Friends_Set_Input>;
+  pk_columns: Friends_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Friends_ManyArgs = {
+  updates: Array<Friends_Updates>;
 };
 
 
@@ -841,6 +1374,18 @@ export type Query_Root = {
   accounts_aggregate: Accounts_Aggregate;
   /** fetch data from the table: "accounts" using primary key columns */
   accounts_by_pk?: Maybe<Accounts>;
+  /** fetch data from the table: "friend_status" */
+  friend_status: Array<Friend_Status>;
+  /** fetch aggregated fields from the table: "friend_status" */
+  friend_status_aggregate: Friend_Status_Aggregate;
+  /** fetch data from the table: "friend_status" using primary key columns */
+  friend_status_by_pk?: Maybe<Friend_Status>;
+  /** An array relationship */
+  friends: Array<Friends>;
+  /** An aggregate relationship */
+  friends_aggregate: Friends_Aggregate;
+  /** fetch data from the table: "friends" using primary key columns */
+  friends_by_pk?: Maybe<Friends>;
   /** An array relationship */
   sessions: Array<Sessions>;
   /** An aggregate relationship */
@@ -881,6 +1426,52 @@ export type Query_RootAccounts_AggregateArgs = {
 
 
 export type Query_RootAccounts_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootFriend_StatusArgs = {
+  distinct_on?: InputMaybe<Array<Friend_Status_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friend_Status_Order_By>>;
+  where?: InputMaybe<Friend_Status_Bool_Exp>;
+};
+
+
+export type Query_RootFriend_Status_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Friend_Status_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friend_Status_Order_By>>;
+  where?: InputMaybe<Friend_Status_Bool_Exp>;
+};
+
+
+export type Query_RootFriend_Status_By_PkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+export type Query_RootFriendsArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+
+export type Query_RootFriends_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+
+export type Query_RootFriends_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -1167,6 +1758,22 @@ export type Subscription_Root = {
   accounts_by_pk?: Maybe<Accounts>;
   /** fetch data from the table in a streaming manner: "accounts" */
   accounts_stream: Array<Accounts>;
+  /** fetch data from the table: "friend_status" */
+  friend_status: Array<Friend_Status>;
+  /** fetch aggregated fields from the table: "friend_status" */
+  friend_status_aggregate: Friend_Status_Aggregate;
+  /** fetch data from the table: "friend_status" using primary key columns */
+  friend_status_by_pk?: Maybe<Friend_Status>;
+  /** fetch data from the table in a streaming manner: "friend_status" */
+  friend_status_stream: Array<Friend_Status>;
+  /** An array relationship */
+  friends: Array<Friends>;
+  /** An aggregate relationship */
+  friends_aggregate: Friends_Aggregate;
+  /** fetch data from the table: "friends" using primary key columns */
+  friends_by_pk?: Maybe<Friends>;
+  /** fetch data from the table in a streaming manner: "friends" */
+  friends_stream: Array<Friends>;
   /** An array relationship */
   sessions: Array<Sessions>;
   /** An aggregate relationship */
@@ -1221,6 +1828,66 @@ export type Subscription_RootAccounts_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Accounts_Stream_Cursor_Input>>;
   where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+export type Subscription_RootFriend_StatusArgs = {
+  distinct_on?: InputMaybe<Array<Friend_Status_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friend_Status_Order_By>>;
+  where?: InputMaybe<Friend_Status_Bool_Exp>;
+};
+
+
+export type Subscription_RootFriend_Status_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Friend_Status_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friend_Status_Order_By>>;
+  where?: InputMaybe<Friend_Status_Bool_Exp>;
+};
+
+
+export type Subscription_RootFriend_Status_By_PkArgs = {
+  value: Scalars['String']['input'];
+};
+
+
+export type Subscription_RootFriend_Status_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Friend_Status_Stream_Cursor_Input>>;
+  where?: InputMaybe<Friend_Status_Bool_Exp>;
+};
+
+
+export type Subscription_RootFriendsArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+
+export type Subscription_RootFriends_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+
+export type Subscription_RootFriends_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootFriends_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Friends_Stream_Cursor_Input>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
 };
 
 
@@ -1335,6 +2002,14 @@ export type Users = {
   accounts_aggregate: Accounts_Aggregate;
   email?: Maybe<Scalars['String']['output']>;
   emailVerified?: Maybe<Scalars['timestamptz']['output']>;
+  /** An array relationship */
+  friends: Array<Friends>;
+  /** An array relationship */
+  friendsByToUserid: Array<Friends>;
+  /** An aggregate relationship */
+  friendsByToUserid_aggregate: Friends_Aggregate;
+  /** An aggregate relationship */
+  friends_aggregate: Friends_Aggregate;
   id: Scalars['uuid']['output'];
   image?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
@@ -1362,6 +2037,46 @@ export type UsersAccounts_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Accounts_Order_By>>;
   where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersFriendsArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersFriendsByToUseridArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersFriendsByToUserid_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersFriends_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Friends_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Friends_Order_By>>;
+  where?: InputMaybe<Friends_Bool_Exp>;
 };
 
 
@@ -1415,6 +2130,10 @@ export type Users_Bool_Exp = {
   accounts_aggregate?: InputMaybe<Accounts_Aggregate_Bool_Exp>;
   email?: InputMaybe<String_Comparison_Exp>;
   emailVerified?: InputMaybe<Timestamptz_Comparison_Exp>;
+  friends?: InputMaybe<Friends_Bool_Exp>;
+  friendsByToUserid?: InputMaybe<Friends_Bool_Exp>;
+  friendsByToUserid_aggregate?: InputMaybe<Friends_Aggregate_Bool_Exp>;
+  friends_aggregate?: InputMaybe<Friends_Aggregate_Bool_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   image?: InputMaybe<String_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
@@ -1435,6 +2154,8 @@ export type Users_Insert_Input = {
   accounts?: InputMaybe<Accounts_Arr_Rel_Insert_Input>;
   email?: InputMaybe<Scalars['String']['input']>;
   emailVerified?: InputMaybe<Scalars['timestamptz']['input']>;
+  friends?: InputMaybe<Friends_Arr_Rel_Insert_Input>;
+  friendsByToUserid?: InputMaybe<Friends_Arr_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['uuid']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -1489,6 +2210,8 @@ export type Users_Order_By = {
   accounts_aggregate?: InputMaybe<Accounts_Aggregate_Order_By>;
   email?: InputMaybe<Order_By>;
   emailVerified?: InputMaybe<Order_By>;
+  friendsByToUserid_aggregate?: InputMaybe<Friends_Aggregate_Order_By>;
+  friends_aggregate?: InputMaybe<Friends_Aggregate_Order_By>;
   id?: InputMaybe<Order_By>;
   image?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;

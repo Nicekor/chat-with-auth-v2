@@ -4,3 +4,9 @@ query GetUserName($id: uuid!) {
     email
   }
 }
+
+query UserByEmail($email: String!) {
+  users(where: { email: { _eq: $email } }) {
+    id
+  }
+}

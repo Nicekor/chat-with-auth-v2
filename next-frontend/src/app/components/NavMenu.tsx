@@ -7,15 +7,18 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  useDisclosure,
 } from '@nextui-org/react'
 import {
   RemixiconComponentType,
   RiCameraLine,
   RiGroupLine,
   RiLogoutBoxLine,
+  RiNotificationLine,
   RiUserAddLine,
 } from '@remixicon/react'
 import { ThemeSwitcher } from './ThemeSwitcher'
+import AddFriendModal from './AddFriendModal'
 
 enum MenuOption {
   FRIEND_REQUESTS = 'friend-requests',
@@ -39,9 +42,19 @@ const menuOptions: Record<
 
 export default function NavMenu() {
   const { data: session } = useSession()
+  const {
+    isOpen: addFriendsOpen,
+    onOpen: onAddFriendsOpen,
+    onOpenChange: onAddFriendsOpenChange,
+    onClose: onAddFriendClose,
+  } = useDisclosure()
 
   const onMenuAction = (key: MenuOption) => {
     switch (key) {
+      case MenuOption.ADD_FRIEND: {
+        onAddFriendsOpen()
+        break
+      }
       case MenuOption.LOGOUT: {
         signOut()
         break
@@ -76,7 +89,18 @@ export default function NavMenu() {
         </DropdownMenu>
       </Dropdown>
 
-      <ThemeSwitcher />
+      <div className="flex items-center gap-4">
+        <Button isIconOnly variant="light">
+          <RiNotificationLine />
+        </Button>
+        <ThemeSwitcher />
+      </div>
+      <AddFriendModal
+        isOpen={addFriendsOpen}
+        onOpenChange={onAddFriendsOpenChange}
+        onAddFriendClose={onAddFriendClose}
+        placement="top-center"
+      />
     </nav>
   )
 }
