@@ -9,6 +9,7 @@ import { ApolloWrapper } from './ApolloWrapper'
 import { cookies } from 'next/headers'
 import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,6 +33,17 @@ export default async function RootLayout({
           <ApolloWrapper token={token}>
             <NextUIProvider>
               <NextThemesProvider attribute="class" enableSystem>
+                <Toaster
+                  toastOptions={{
+                    className: '!text-default-foreground !bg-default',
+                    success: {
+                      className: '!text-success-foreground !bg-success',
+                    },
+                    error: {
+                      className: '!text-danger-foreground !bg-danger',
+                    },
+                  }}
+                />
                 <main>
                   <NavMenu />
                   {children}
