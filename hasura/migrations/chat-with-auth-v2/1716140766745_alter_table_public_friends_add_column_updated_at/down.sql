@@ -1,0 +1,1 @@
+alter table "public"."friends" drop column "updated_at";

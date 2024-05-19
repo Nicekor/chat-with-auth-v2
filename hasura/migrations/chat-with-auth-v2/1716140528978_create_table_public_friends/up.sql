@@ -1,0 +1,2 @@
+CREATE TABLE "public"."friends" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "fromUserId" uuid NOT NULL, "toUserId" uuid NOT NULL, "status" text NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("fromUserId") REFERENCES "public"."users"("id") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("toUserId") REFERENCES "public"."users"("id") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("status") REFERENCES "public"."friend_status"("value") ON UPDATE restrict ON DELETE restrict, UNIQUE ("fromUserId", "toUserId"));
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

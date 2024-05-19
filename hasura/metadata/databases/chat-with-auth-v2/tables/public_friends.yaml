@@ -1,0 +1,43 @@
+table:
+  name: friends
+  schema: public
+object_relationships:
+  - name: friend_status
+    using:
+      foreign_key_constraint_on: status
+  - name: userByFromUserId
+    using:
+      foreign_key_constraint_on: fromUserId
+  - name: userByToUserid
+    using:
+      foreign_key_constraint_on: toUserId
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        _and:
+          - fromUserId:
+              _eq: X-Hasura-User-Id
+          - status:
+              _eq: pending
+          - toUserId:
+              _neq: X-Hasura-User-Id
+      set:
+        fromUserId: x-hasura-User-Id
+      columns:
+        - status
+        - toUserId
+    comment: ""
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - fromUserId
+        - id
+        - status
+        - toUserId
+      filter:
+        toUserId:
+          _eq: X-Hasura-User-Id
+    comment: ""
